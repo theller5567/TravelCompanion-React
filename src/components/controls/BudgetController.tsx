@@ -5,7 +5,7 @@ function BudgetController() {
   const { totalBudget, setTotalBudget } = useBudget();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-4">
       <div className="flex items-center justify-between">
         <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Total Budget

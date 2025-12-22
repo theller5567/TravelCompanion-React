@@ -1,31 +1,5 @@
-@use "tailwindcss";
 @use "variables" as v;
-@use "./sidebar";
-
-@theme {
-  // Brand Colors
-  --color-primary: #{v.$color-primary};
-  --color-highlight: #{v.$color-highlight};
-  --color-accent: #{v.$color-accent};
-  --color-success: #{v.$color-success};
-  --color-warning: #{v.$color-warning};
-  --color-surface: #{v.$color-surface};
-
-  // Neutrals (Mapping to our Zinc scale)
-  --color-zinc-50: #{v.$gray-50};
-  --color-zinc-100: #{v.$gray-100};
-  --color-zinc-200: #{v.$gray-200};
-  --color-zinc-500: #{v.$gray-500};
-  --color-zinc-700: #{v.$gray-700};
-  --color-zinc-900: #{v.$gray-900};
-
-  // Fonts
-  --font-sans: #{v.$font-main};
-  --font-mono: #{v.$font-data};
-
-  // Custom radii
-  --radius-xl: #{v.$border-radius-base};
-}
+@import "./sidebar";
 
 body {
   margin: 0;

@@ -4,9 +4,8 @@
 #sidebar {
     width: $sidebar-width;
     height: 100%;
-    border-right: 1px solid #1352d2;
+    border-right: 1px solid $color-primary;
     background-color: $gray-700;
     color: $gray-50;
     z-index: 20;
-    padding: 2rem;
 }
