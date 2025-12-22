@@ -1,0 +1,34 @@
+// --- 1. Color Palette (Vibrant Modern) ---
+$color-primary: #8b5cf6;    // Electric Violet
+$color-highlight: #06b6d4;  // Vivid Cyan
+$color-accent: #f43f5e;     // Rose Pink
+$color-success: #10b981;    // Emerald Green
+$color-warning: #f59e0b;    // Amber
+$color-surface: #fafafa;    // Pure Zinc Base
+
+// --- 2. Neutral Grays (Zinc Scale) ---
+$gray-50: #fafafa;
+$gray-100: #f4f4f5;
+$gray-200: #e4e4e7;
+$gray-500: #71717a;
+$gray-700: #2c2c31;
+$gray-900: #18181b;
+
+// --- 3. Layout Constants ---
+$sidebar-width: 400px;
+$header-height: 64px;
+$border-radius-base: 12px;
+$border-radius-pill: 9999px;
+
+// --- 4. Spacing Scale (8px Grid) ---
+$space-1: 0.25rem; // 4px
+$space-2: 0.5rem;  // 8px
+$space-3: 0.75rem; // 12px
+$space-4: 1rem;    // 16px
+$space-6: 1.5rem;  // 24px
+$space-8: 2rem;    // 32px
+
+// --- 5. Typography ---
+$font-main: 'Inter', system-ui, sans-serif;
+$font-data: 'JetBrains Mono', monospace;
+

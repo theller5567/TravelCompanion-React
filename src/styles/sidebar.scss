@@ -1,0 +1,12 @@
+// Global variable (we can move this to a _variables.scss later)
+@use "./variables" as *;
+
+#sidebar {
+    width: $sidebar-width;
+    height: 100%;
+    border-right: 1px solid #1352d2;
+    background-color: $gray-700;
+    color: $gray-50;
+    z-index: 20;
+    padding: 2rem;
+}
