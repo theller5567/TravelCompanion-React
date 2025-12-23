@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, type ReactElement } from 'react';
+import type { FlightResult } from '@/services/FlightService';
 
 /**
  * Interface for the new Flight-Discovery Context
@@ -15,7 +16,9 @@ interface BudgetContextType {
   dateRange: DateRange;
   tripVibe: string;
   numberOfPeople: number;
+  
   // Results & Selection
+  flightResults: FlightResult[];
   selectedCategories: string[];
   userLocation: { lat: number; lng: number } | null;
   isLoading: boolean;
@@ -26,6 +29,7 @@ interface BudgetContextType {
   setDateRange: (range: DateRange) => void;
   setTripVibe: (vibe: string) => void;
   setNumberOfPeople: (people: number) => void;
+  setFlightResults: (results: FlightResult[]) => void;
   setSelectedCategories: (categories: string[]) => void;
   setUserLocation: (location: { lat: number; lng: number } | null) => void;
   setIsLoading: (val: boolean) => void;
@@ -46,6 +50,7 @@ export const BudgetProvider: React.FC<{ children: ReactElement }> = ({ children 
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [numberOfPeople, setNumberOfPeople] = useState<number>(1);
+  const [flightResults, setFlightResults] = useState<FlightResult[]>([]);
 
   const value = {
     totalBudget,
@@ -56,6 +61,7 @@ export const BudgetProvider: React.FC<{ children: ReactElement }> = ({ children 
     userLocation,
     isLoading,
     numberOfPeople,
+    flightResults,
     setTotalBudget,
     setDepartureLocation,
     setDateRange,
@@ -64,6 +70,7 @@ export const BudgetProvider: React.FC<{ children: ReactElement }> = ({ children 
     setUserLocation,
     setIsLoading,
     setNumberOfPeople,
+    setFlightResults,
   };
 
   return <BudgetContext.Provider value={value}>{children}</BudgetContext.Provider>;

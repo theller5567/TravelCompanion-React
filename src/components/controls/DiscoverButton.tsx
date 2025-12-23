@@ -11,7 +11,8 @@ function DiscoverButton() {
     totalBudget,
     tripVibe,
     isLoading, 
-    setIsLoading 
+    setIsLoading,
+    setFlightResults
   } = useBudget();
 
   // Button is disabled if we don't have basic search parameters
@@ -25,9 +26,10 @@ function DiscoverButton() {
     try {
       // Execute the discovery using our flight service
       const results = await flightService.discoverMockFlights(totalBudget, tripVibe);
-      console.log("Discovery successful! Results found:", results);
       
-      // NEXT STEP: We need to create a place to store and display these results
+      // Store results in global state
+      setFlightResults(results);
+      console.log("Discovery successful! Results found:", results);
     } catch (error) {
       console.error("Discovery failed:", error);
     } finally {
