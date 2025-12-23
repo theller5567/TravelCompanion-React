@@ -18,14 +18,23 @@ function DiscoverButton() {
   // Button is disabled if we don't have basic search parameters
   const isReady = departureLocation.trim() !== "" && dateRange?.from !== undefined;
 
+  const month = dateRange?.from?.toLocaleString('default', { month: 'long' }) || '';
+  console.log(`[DiscoverButton] Month: ${month}`);
+
   const handleDiscover = async () => {
     if (!isReady || isLoading) return;
 
     setIsLoading(true);
 
     try {
-      // Execute the discovery using our flight service
-      const results = await flightService.discoverMockFlights(totalBudget, tripVibe);
+      // Execute the production discovery using our flight service
+      // We pass the location code (e.g., ATL) and the month
+      const results = await flightService.discoverFlights(
+        departureLocation, 
+        totalBudget, 
+        tripVibe, 
+        month
+      );
       
       // Store results in global state
       setFlightResults(results);

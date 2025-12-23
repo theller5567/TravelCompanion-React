@@ -18,4 +18,18 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      '/v1': {
+        target: 'https://api.openai.com',
+        changeOrigin: true,
+        secure: true,
+      },
+      '/amadeus': {
+        target: 'https://test.api.amadeus.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/amadeus/, ''), // Strips /amadeus from the URL before forwarding
+      },
+    }
+  }
 })
