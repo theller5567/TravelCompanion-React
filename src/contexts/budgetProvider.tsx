@@ -11,6 +11,8 @@ interface BudgetContextType {
   fuelPrice: number;
   estimatedTolls: number;
   trafficMultiplier: number;
+  selectedCategories: string[];
+  userLocation: { lat: number; lng: number } | null;
 
   // Setters
   setTotalBudget: (val: number) => void;
@@ -19,6 +21,8 @@ interface BudgetContextType {
   setFuelPrice: (val: number) => void;
   setEstimatedTolls: (val: number) => void;
   setTrafficMultiplier: (val: number) => void;
+  setSelectedCategories: (categories: string[]) => void;
+  setUserLocation: (location: { lat: number; lng: number } | null) => void;
 
   // Derived Logic
   travelCost: number;
@@ -35,6 +39,8 @@ export const BudgetProvider: React.FC<{ children: ReactElement }> = ({ children 
   const [fuelPrice, setFuelPrice] = useState<number>(3.50);
   const [estimatedTolls, setEstimatedTolls] = useState<number>(0);
   const [trafficMultiplier, setTrafficMultiplier] = useState<number>(1.0);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
 
   /**
    * The "Nuance Engine" Logic
@@ -67,12 +73,16 @@ export const BudgetProvider: React.FC<{ children: ReactElement }> = ({ children 
     fuelPrice,
     estimatedTolls,
     trafficMultiplier,
+    selectedCategories,
+    userLocation,
     setTotalBudget,
     setTravelDistance,
     setVehicleMPG,
     setFuelPrice,
     setEstimatedTolls,
     setTrafficMultiplier,
+    setSelectedCategories,
+    setUserLocation,
     travelCost,
     netBudget,
   };

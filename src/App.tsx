@@ -1,5 +1,5 @@
 import Sidebar from './components/Sidebar.tsx'
-import Map from './components/Map.tsx'
+import InteractiveMap from './components/map/InteractiveMap.tsx'
 import SummaryHeader from './components/SummaryHeader.tsx'
 import MapOverlay from './components/map/MapOverlay.tsx'
 
@@ -11,7 +11,7 @@ function App() {
       <div className="shell-body">
         <Sidebar />
         <div id="map-container">
-          <Map />
+          <InteractiveMap />
           <MapOverlay />
         </div>
       </div>

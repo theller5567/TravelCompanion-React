@@ -8,4 +8,21 @@
     background-color: $gray-700;
     color: $gray-50;
     z-index: 20;
+    padding: 2rem;
+
+    &.custom-scrollbar {
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        &:hover::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    }
 }

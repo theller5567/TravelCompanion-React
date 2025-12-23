@@ -2,4 +2,11 @@
         return distance / mpg * fuelPrice;
     }
 
-    export default calculateTravelCost;
+    const formatCurrency = (amount: number, currency: string = 'USD', locale: string = 'en-US') => {
+        return new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currency,
+        }).format(amount);
+    }
+
+    export { calculateTravelCost, formatCurrency };
