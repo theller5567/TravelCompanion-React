@@ -1,13 +1,8 @@
 import { useBudget } from "@/contexts/budgetProvider";
+import { formatCurrency } from "@/utils/FinanceHelper";
 
 function SummaryHeader() {
-  const { netBudget } = useBudget();
-
-  // Senior dev tip: Use Intl.NumberFormat for clean, localized currency
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
+  const { totalBudget } = useBudget();
 
   return (
     <header 
@@ -24,10 +19,10 @@ function SummaryHeader() {
       <div className="flex items-center gap-4">
         <div className="text-right">
           <p className="text-[10px] uppercase font-bold text-white/50 leading-none mb-1">
-            Available Funds
+            Budget Limit
           </p>
           <p className="text-2xl font-mono font-bold tracking-tight">
-            {formatter.format(netBudget)}
+            {formatCurrency(totalBudget, 'USD', 'en-US')}
           </p>
         </div>
       </div>

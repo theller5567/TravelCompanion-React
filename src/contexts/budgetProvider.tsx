@@ -1,98 +1,74 @@
-import React, { createContext, useContext, useState, useMemo, type ReactElement } from 'react';
+import React, { createContext, useContext, useState, type ReactElement } from 'react';
 
 /**
- * Interface for Budget Context State
+ * Interface for the new Flight-Discovery Context
  */
+export interface DateRange {
+  from: Date | undefined;
+  to: Date | undefined;
+}
+
 interface BudgetContextType {
-  // Inputs
+  // Primary Constraints
   totalBudget: number;
-  travelDistance: number;
-  vehicleMPG: number;
-  fuelPrice: number;
-  estimatedTolls: number;
-  trafficMultiplier: number;
+  departureLocation: string;
+  dateRange: DateRange;
+  tripVibe: string;
+  numberOfPeople: number;
+  // Results & Selection
   selectedCategories: string[];
   userLocation: { lat: number; lng: number } | null;
+  isLoading: boolean;
 
   // Setters
   setTotalBudget: (val: number) => void;
-  setTravelDistance: (val: number) => void;
-  setVehicleMPG: (val: number) => void;
-  setFuelPrice: (val: number) => void;
-  setEstimatedTolls: (val: number) => void;
-  setTrafficMultiplier: (val: number) => void;
+  setDepartureLocation: (val: string) => void;
+  setDateRange: (range: DateRange) => void;
+  setTripVibe: (vibe: string) => void;
+  setNumberOfPeople: (people: number) => void;
   setSelectedCategories: (categories: string[]) => void;
   setUserLocation: (location: { lat: number; lng: number } | null) => void;
-
-  // Derived Logic
-  travelCost: number;
-  netBudget: number;
+  setIsLoading: (val: boolean) => void;
 }
 
 const BudgetContext = createContext<BudgetContextType | undefined>(undefined);
 
 export const BudgetProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
-  // State initialization
-  const [totalBudget, setTotalBudget] = useState<number>(100);
-  const [travelDistance, setTravelDistance] = useState<number>(0);
-  const [vehicleMPG, setVehicleMPG] = useState<number>(25);
-  const [fuelPrice, setFuelPrice] = useState<number>(3.50);
-  const [estimatedTolls, setEstimatedTolls] = useState<number>(0);
-  const [trafficMultiplier, setTrafficMultiplier] = useState<number>(1.0);
+  // Initialization with sensible defaults for a Travel App
+  const [totalBudget, setTotalBudget] = useState<number>(500);
+  const [departureLocation, setDepartureLocation] = useState<string>("");
+  const [dateRange, setDateRange] = useState<DateRange>({
+    from: undefined,
+    to: undefined,
+  });
+  const [tripVibe, setTripVibe] = useState<string>("beach");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
-
-  /**
-   * The "Nuance Engine" Logic
-   * Calculates the cost of getting there based on vehicle efficiency, 
-   * fuel costs, tolls, and traffic friction.
-   */
-  const travelCost = useMemo(() => {
-    if (vehicleMPG <= 0) return 0;
-    
-    // Base Fuel Cost: (Distance / MPG) * Price
-    const baseFuelCost = (travelDistance / vehicleMPG) * fuelPrice;
-    
-    // Apply Traffic Friction (Traffic increases fuel consumption)
-    const trafficAdjustedFuel = baseFuelCost * trafficMultiplier;
-    
-    return trafficAdjustedFuel + estimatedTolls;
-  }, [travelDistance, vehicleMPG, fuelPrice, trafficMultiplier, estimatedTolls]);
-
-  /**
-   * The actual money remaining for activities
-   */
-  const netBudget = useMemo(() => {
-    return Math.max(0, totalBudget - travelCost);
-  }, [totalBudget, travelCost]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [numberOfPeople, setNumberOfPeople] = useState<number>(1);
 
   const value = {
     totalBudget,
-    travelDistance,
-    vehicleMPG,
-    fuelPrice,
-    estimatedTolls,
-    trafficMultiplier,
+    departureLocation,
+    dateRange,
+    tripVibe,
     selectedCategories,
     userLocation,
+    isLoading,
+    numberOfPeople,
     setTotalBudget,
-    setTravelDistance,
-    setVehicleMPG,
-    setFuelPrice,
-    setEstimatedTolls,
-    setTrafficMultiplier,
+    setDepartureLocation,
+    setDateRange,
+    setTripVibe,
     setSelectedCategories,
     setUserLocation,
-    travelCost,
-    netBudget,
+    setIsLoading,
+    setNumberOfPeople,
   };
 
   return <BudgetContext.Provider value={value}>{children}</BudgetContext.Provider>;
 };
 
-/**
- * Custom hook to consume the Budget Logic
- */
 export const useBudget = () => {
   const context = useContext(BudgetContext);
   if (context === undefined) {
@@ -100,4 +76,3 @@ export const useBudget = () => {
   }
   return context;
 };
-

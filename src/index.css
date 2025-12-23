@@ -33,6 +33,13 @@
   --color-zinc-700: var(--gray-700);
   --color-zinc-900: var(--gray-900);
 
+  --shadow-primary: 0 0 10px 0 var(--color-primary);
+  --shadow-highlight: 0 0 10px 0 var(--color-highlight);
+  --shadow-accent: 0 0 10px 0 var(--color-accent);
+  --shadow-success: 0 0 10px 0 var(--color-success);
+  --shadow-warning: 0 0 10px 0 var(--color-warning);
+  --shadow-surface: 0 0 10px 0 var(--color-surface);
+
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   
